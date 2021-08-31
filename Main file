@@ -1,0 +1,29 @@
+'''
+Created on Aug. 31, 2021
+
+@author: johnfalkingham
+'''
+
+
+from os import strerror
+
+alpha = {str(chr(x)):0 for x in range(65,91)}
+
+test_file = input(str("Please give me the input file name: "))
+
+try:
+    stream = open(test_file)
+    for ch in stream.read():
+        if ch.isalpha():
+            alpha[ch.upper()] += 1
+        else:
+            pass
+    
+    stream.close()
+    
+    for key in alpha.keys():
+        if alpha[key] > 0:
+            print(key, "-->", alpha[key])
+        
+except Exception as e:
+    print("Error encountered: ", strerror(e.errno))    
